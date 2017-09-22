@@ -4,7 +4,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux';
-import allReducers from './reducers'
+import allReducers from './reducers/rootReducer'
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 

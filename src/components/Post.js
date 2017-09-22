@@ -11,7 +11,7 @@ class Post extends React.Component {
 
         this.state = {
             likeIcon: "empty heart",
-            likeNumber: this.props.postData.meta.likeNumber
+            likeNumber: this.props.data.likeCount
         };
 
         this.loadPost = this.loadPost.bind(this);
@@ -22,7 +22,7 @@ class Post extends React.Component {
     componentDidMount() {
         // To convert new line characters to <br> in text of React with react-linkify,
         // need to update this in componentDidMount()
-        let caption = $("#" + this.props.postData.postID).find(".description");
+        let caption = $("#" + this.props.data.id).find(".description");
         let captionContent = caption.html();
         captionContent = captionContent.replace(/(?:\r\n|\r|\n)/g, '<br/>');
         caption.html(captionContent);
@@ -32,13 +32,13 @@ class Post extends React.Component {
         const cardWidth = (screenType === "desktop")? "50%" : "100%";
 
         return (
-            <Card id={this.props.postData.postID} style={{width: cardWidth}} centered>
+            <Card id={this.props.data.id} style={{width: cardWidth}} centered>
                 <Card.Content>
-                    <Image src={this.props.postData.creator.userPhoto} avatar/>
-                    <span style={{paddingLeft: '7px'}}>{this.props.postData.creator.userName}</span>
+                    <Image src={this.props.data.creator.avatar.url} avatar/>
+                    <span style={{paddingLeft: '7px'}}>{this.props.data.creator.username}</span>
                 </Card.Content>
                 <div style={{position: 'relative'}}>
-                    <Image src={this.props.postData.images.standardRes.url}/>
+                    <Image src={this.props.data.image.url}/>
                     {this.addBubble()}
                 </div>
                 <Card.Content>
@@ -59,12 +59,12 @@ class Post extends React.Component {
                         </Menu.Menu>
                     </Menu>
                     <Card.Description>
-                        <Linkify>{this.props.postData.caption}</Linkify>
+                        <Linkify>{this.props.data.caption}</Linkify>
                     </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
                     <span className='date'>
-                        {this.props.postData.meta.createTime}
+                        {this.props.data.createdAt}
                     </span>
                 </Card.Content>
             </Card>
@@ -73,8 +73,8 @@ class Post extends React.Component {
 
     addBubble() {
         return (
-            this.props.postData.bubbles.map(
-                (bubble) => <Bubble key={bubble.bubbleID} bubbleData={bubble}/>
+            this.props.data.bubbles.map(
+                (bubble) => <Bubble key={bubble.id} data={bubble}/>
             )
         );
     }
