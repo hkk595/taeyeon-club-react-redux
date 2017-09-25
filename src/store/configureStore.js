@@ -1,25 +1,25 @@
 import { createStore } from 'redux'
 import { createLogger } from 'redux-logger'
-import { rootReducer } from '../reducers/rootReducer'
+import rootReducer from '../reducers/rootReducer'
 
 const ObjectID = require('bson-objectid');
-const uuidv1 = require('uuid/v1');
+const uuidv4 = require('uuid/v4');
 
 const logger = createLogger();
 
 let creatorId = ObjectID.generate();
-let creatorUuid = uuidv1();
+let creatorUuid = uuidv4();
 let creatorAvatarId = ObjectID.generate();
 let creatorCreatedAt = new Date().toLocaleDateString();
 let bubbleId = ObjectID.generate();
 let bubbleAudioId = ObjectID.generate();
 let bubbleCreatedAt = new Date().toLocaleDateString();
 let postId = ObjectID.generate();
-let postUuid = uuidv1();
+let postUuid = uuidv4();
 let postImageId = ObjectID.generate();
 let postCreatedAt = new Date().toLocaleDateString();
 
-const initialState = {
+const initialState = [{
     id: postId,
     uuid: postUuid,
     caption: "Taeyeon Concert PERSONA in Hong Kong 2017\nsource: https://twitter.com/davidss309/status/873761094166130688",
@@ -78,11 +78,9 @@ const initialState = {
     likeCount: 309,
     createdAt: postCreatedAt,
     updatedAt: postCreatedAt,
-};
+}];
 
-// module.exports = {
-//     initialState
-// };
+// export default initialState;
 
 export default function configureStore() {
     return createStore(rootReducer, initialState);

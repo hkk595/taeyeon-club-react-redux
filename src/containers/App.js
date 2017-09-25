@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
 import { Menu, Input, Image } from 'semantic-ui-react'
-import PostList from "./containers/PostList";
+import Post from './postContainer';
 
 class App extends Component {
     constructor() {
@@ -23,7 +23,7 @@ class App extends Component {
                         <Menu.Item name="login"/>
                     </Menu.Menu>
                 </Menu>
-                <PostList/>
+                <Post/>
             </div>
         );
     }

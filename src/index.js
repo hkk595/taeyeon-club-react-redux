@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore } from 'redux'
 import { Provider } from 'react-redux';
-import allReducers from './reducers/rootReducer'
+import configureStore from './store/configureStore';
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 
-let store = createStore(allReducers);
+let store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
@@ -16,4 +15,5 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+
 registerServiceWorker();

@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import likeReducer from './likeReducer'
+import postReducer from './postReducer'
 
-const rootReducer = combineReducers(likeReducer);
+const rootReducer = combineReducers({
+    postReducer
+});
 
 export default rootReducer
