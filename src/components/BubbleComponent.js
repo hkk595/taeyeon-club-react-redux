@@ -6,10 +6,6 @@ class Bubble extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            playNumber: props.data.playCount
-        };
-
         this.audioObj = null;
         this.initAudio = this.initAudio.bind(this);
         this.playAudio = this.playAudio.bind(this);
@@ -17,8 +13,8 @@ class Bubble extends React.Component {
     }
 
     initAudio() {
-        let bubbleImage = $("#" + this.props.data.id);
-        this.audioObj = new Audio(this.props.data.audio.url);
+        let bubbleImage = $("#" + this.props.bubble.id);
+        this.audioObj = new Audio(this.props.bubble.audio.url);
         this.audioObj.onplay = () => bubbleImage.attr("src", this.getBubbleImgUrl());
         this.audioObj.onpause = () => bubbleImage.attr("src", this.getBubbleImgUrl());
         this.audioObj.onended = () => bubbleImage.attr("src", this.getBubbleImgUrl());
@@ -43,37 +39,37 @@ class Bubble extends React.Component {
             audioPlaying = !this.audioObj.paused;
         }
 
-        if (audioPlaying && this.props.data.orientation === "N") {
+        if (audioPlaying && this.props.bubble.orientation === "N") {
             imgUrl = "/image/bubble_pause_n.png";
-        } else if (audioPlaying && this.props.data.orientation === "S") {
+        } else if (audioPlaying && this.props.bubble.orientation === "S") {
             imgUrl = "/image/bubble_pause_s.png";
-        } else if (audioPlaying && this.props.data.orientation === "E") {
+        } else if (audioPlaying && this.props.bubble.orientation === "E") {
             imgUrl = "/image/bubble_pause_e.png";
-        } else if (audioPlaying && this.props.data.orientation === "W") {
+        } else if (audioPlaying && this.props.bubble.orientation === "W") {
             imgUrl = "/image/bubble_pause_w.png";
-        } else if (audioPlaying && this.props.data.orientation === "NE") {
+        } else if (audioPlaying && this.props.bubble.orientation === "NE") {
             imgUrl = "/image/bubble_pause_ne.png";
-        } else if (audioPlaying && this.props.data.orientation === "NW") {
+        } else if (audioPlaying && this.props.bubble.orientation === "NW") {
             imgUrl = "/image/bubble_pause_nw.png";
-        } else if (audioPlaying && this.props.data.orientation === "SE") {
+        } else if (audioPlaying && this.props.bubble.orientation === "SE") {
             imgUrl = "/image/bubble_pause_se.png";
-        } else if (audioPlaying && this.props.data.orientation === "SW") {
+        } else if (audioPlaying && this.props.bubble.orientation === "SW") {
             imgUrl = "/image/bubble_pause_sw.png";
-        } else if (!audioPlaying && this.props.data.orientation === "N") {
+        } else if (!audioPlaying && this.props.bubble.orientation === "N") {
             imgUrl = "/image/bubble_play_n.png";
-        } else if (!audioPlaying && this.props.data.orientation === "S") {
+        } else if (!audioPlaying && this.props.bubble.orientation === "S") {
             imgUrl = "/image/bubble_play_s.png";
-        } else if (!audioPlaying && this.props.data.orientation === "E") {
+        } else if (!audioPlaying && this.props.bubble.orientation === "E") {
             imgUrl = "/image/bubble_play_e.png";
-        } else if (!audioPlaying && this.props.data.orientation === "W") {
+        } else if (!audioPlaying && this.props.bubble.orientation === "W") {
             imgUrl = "/image/bubble_play_w.png";
-        } else if (!audioPlaying && this.props.data.orientation === "NE") {
+        } else if (!audioPlaying && this.props.bubble.orientation === "NE") {
             imgUrl = "/image/bubble_play_ne.png";
-        } else if (!audioPlaying && this.props.data.orientation === "NW") {
+        } else if (!audioPlaying && this.props.bubble.orientation === "NW") {
             imgUrl = "/image/bubble_play_nw.png";
-        } else if (!audioPlaying && this.props.data.orientation === "SE") {
+        } else if (!audioPlaying && this.props.bubble.orientation === "SE") {
             imgUrl = "/image/bubble_play_se.png";
-        } else if (!audioPlaying && this.props.data.orientation === "SW") {
+        } else if (!audioPlaying && this.props.bubble.orientation === "SW") {
             imgUrl = "/image/bubble_play_sw.png";
         }
 
@@ -82,11 +78,11 @@ class Bubble extends React.Component {
 
     render() {
         const imgUrl = this.getBubbleImgUrl();
-        const x = this.props.data.positionX * 100 + '%';
-        const y = this.props.data.positionY * 100 + '%';
+        const x = this.props.bubble.positionX * 100 + '%';
+        const y = this.props.bubble.positionY * 100 + '%';
 
         return (
-            <Image id={this.props.data.id}
+            <Image id={this.props.bubble.id}
                    src={imgUrl}
                    onClick={this.playAudio}
                    width="13%" height="auto"

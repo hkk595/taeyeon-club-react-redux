@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import './App.css';
 import { Menu, Input, Image } from 'semantic-ui-react'
-import Post from './postContainer';
+import PostList from './PostListContainer'
 
 class App extends Component {
     constructor() {
@@ -23,7 +23,7 @@ class App extends Component {
                         <Menu.Item name="login"/>
                     </Menu.Menu>
                 </Menu>
-                <Post/>
+                <PostList/>
             </div>
         );
     }
