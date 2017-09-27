@@ -33,13 +33,13 @@ class PostComponent extends React.Component {
             return (
                 <Card id={this.props.post.id} style={{width: cardWidth}} centered>
                     <Card.Content>
-                        <Image src={this.props.post.creator.avatar.url} avatar/>
+                        <Image src={this.props.post.creator.avatar.url} avatar />
                         <span style={{paddingLeft: '7px'}}>{this.props.post.creator.username}</span>
                     </Card.Content>
                     <div style={{position: 'relative'}}>
-                        <Image src={this.props.post.image.url}/>
+                        <Image src={this.props.post.image.url} />
                         {this.props.post.bubbles.map(
-                            (bubble) => <Bubble key={bubble.id} bubble={bubble}/>
+                            (bubble) => <Bubble key={bubble.id} bubble={bubble} />
                         )}
                     </div>
                     <Card.Content>
@@ -65,7 +65,7 @@ class PostComponent extends React.Component {
                     </Card.Content>
                     <Card.Content extra>
                     <span className='date'>
-                        {this.props.post.createdAt}
+                        {new Date(this.props.post.createdAt).toLocaleDateString()}
                     </span>
                     </Card.Content>
                 </Card>
@@ -76,7 +76,7 @@ class PostComponent extends React.Component {
     changeLikeIcon() {
         this.setState(
             (prevState) => ({
-                likeIcon: prevState.likeIcon === "heart" ? "empty heart" : "heart",
+                likeIcon: prevState.likeIcon === "heart" ? "empty heart" : "heart"
             }),
             () => {
                 if (this.state.likeIcon === "heart") {

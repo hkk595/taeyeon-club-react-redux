@@ -1,23 +1,22 @@
 import { createStore } from 'redux'
 import { createLogger } from 'redux-logger'
 import rootReducer from '../reducers/RootReducer'
-
-const ObjectID = require('bson-objectid');
-const uuidv4 = require('uuid/v4');
+import ObjectID from 'bson-objectid'
+import uuidv4 from 'uuid/v4'
 
 const logger = createLogger();
 
 let creatorId = ObjectID.generate();
 let creatorUuid = uuidv4();
 let creatorAvatarId = ObjectID.generate();
-let creatorCreatedAt = new Date().toLocaleDateString();
+let creatorCreatedAt = new Date().toISOString();
 let bubbleId = ObjectID.generate();
 let bubbleAudioId = ObjectID.generate();
-let bubbleCreatedAt = new Date().toLocaleDateString();
+let bubbleCreatedAt = new Date().toISOString();
 let postId = ObjectID.generate();
 let postUuid = uuidv4();
 let postImageId = ObjectID.generate();
-let postCreatedAt = new Date().toLocaleDateString();
+let postCreatedAt = new Date().toISOString();
 
 const initialState = {
     posts: [{
@@ -82,10 +81,6 @@ const initialState = {
     }]
 };
 
-// export default initialState;
-
 export default function configureStore() {
-    let store;
-    store = createStore(rootReducer, initialState);
-    return store;
+    return createStore(rootReducer, initialState);
 }

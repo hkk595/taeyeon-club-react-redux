@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import PostListComponent from '../components/PostListComponent'
 
-// let postList = initialState;
-
 function mapStateToProps(state, ownProps) {
-    return state
+    return {
+        postIds: state.posts.map(post => post.id)
+    }
 }
 
 const PostListContainer = connect(mapStateToProps)(PostListComponent)

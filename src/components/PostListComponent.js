@@ -9,8 +9,8 @@ class PostListComponent extends React.Component {
     render() {
         return(
             <div name="post_list" style={{paddingTop: "92px"}}>
-                {this.props.posts.map(post =>
-                    <Post key={post.id} postId={post.id} />
+                {this.props.postIds.map(postId =>
+                    <Post key={postId} postId={postId} />
                 )}
             </div>
         );

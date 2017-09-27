@@ -18,12 +18,12 @@ class App extends Component {
                     </Menu.Item>
                     <Menu.Menu position="right">
                         <Menu.Item>
-                            <Input icon="search" placeholder="Search"/>
+                            <Input icon="search" placeholder="Search" />
                         </Menu.Item>
-                        <Menu.Item name="login"/>
+                        <Menu.Item name="login" />
                     </Menu.Menu>
                 </Menu>
-                <PostList/>
+                <PostList />
             </div>
         );
     }
