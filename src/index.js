@@ -10,6 +10,7 @@ import 'semantic-ui-css/semantic.min.css';
 let store = configureStore();
 // alert(JSON.stringify(store.getState()));
 
+// All the components strictly follow the container-component pattern of react-redux
 ReactDOM.render(
     <Provider store={store}>
         <App />

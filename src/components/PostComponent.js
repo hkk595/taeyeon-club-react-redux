@@ -9,6 +9,7 @@ class PostComponent extends React.Component {
     constructor(props) {
         super(props);
 
+        // This is merely UI state, no need to put in the redux store
         this.state = {
             likeIcon: "empty heart",
         };
@@ -75,9 +76,11 @@ class PostComponent extends React.Component {
 
     changeLikeIcon() {
         this.setState(
+            // Alter the likeIcon of the post UI
             (prevState) => ({
                 likeIcon: prevState.likeIcon === "heart" ? "empty heart" : "heart"
             }),
+            // Callback to alter the corresponding likeCount number in the state
             () => {
                 if (this.state.likeIcon === "heart") {
                     this.props.actions.likePost(this.props.post.id);
