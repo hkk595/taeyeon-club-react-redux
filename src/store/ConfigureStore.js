@@ -1,10 +1,11 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
-import rootReducer from '../reducers/RootReducer'
+import thunkMiddleware from 'redux-thunk'
 import ObjectID from 'bson-objectid'
 import uuidv4 from 'uuid/v4'
+import rootReducer from '../reducers/RootReducer'
 
-const logger = createLogger();
+const loggerMiddleware = createLogger();
 
 let creatorId = ObjectID.generate();
 let creatorUuid = uuidv4();
@@ -82,5 +83,12 @@ const initialState = {
 };
 
 export default function configureStore() {
-    return createStore(rootReducer, initialState);
+    return createStore(
+        rootReducer,
+        initialState,
+        applyMiddleware(
+            thunkMiddleware, // let us dispatch() functions
+            loggerMiddleware // neat middleware that logs actions
+        )
+    );
 }
