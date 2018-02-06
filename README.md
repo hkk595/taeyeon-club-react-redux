@@ -1,1 +1,1 @@
-# taeyeon-club-web-redux
+# taeyeon-club-react-redux
