@@ -21,6 +21,6 @@ function mapDispatchToProps(dispatch, ownProps) {
 const PostContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(PostComponent)
+)(PostComponent);
 
-export default PostContainer
+export default PostContainer;

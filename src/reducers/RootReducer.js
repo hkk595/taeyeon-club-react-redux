@@ -5,4 +5,4 @@ const rootReducer = combineReducers({
     posts
 });
 
-export default rootReducer
+export default rootReducer;

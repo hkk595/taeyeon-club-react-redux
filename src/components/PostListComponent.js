@@ -17,4 +17,4 @@ class PostListComponent extends React.Component {
     }
 }
 
-export default PostListComponent
+export default PostListComponent;

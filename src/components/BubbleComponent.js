@@ -18,12 +18,12 @@ class Bubble extends React.Component {
         this.audioObj.onplay = () => bubbleImage.attr("src", this.getBubbleImgUrl());
         this.audioObj.onpause = () => bubbleImage.attr("src", this.getBubbleImgUrl());
         this.audioObj.onended = () => bubbleImage.attr("src", this.getBubbleImgUrl());
-        this.audioObj.play();
     }
 
     playAudio() {
         if (this.audioObj === null) {
             this.initAudio();
+            this.audioObj.play();
         } else if (this.audioObj.paused) {
             this.audioObj.play();
         } else {
@@ -96,4 +96,4 @@ class Bubble extends React.Component {
     }
 }
 
-export default Bubble
+export default Bubble;

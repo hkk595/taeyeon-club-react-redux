@@ -8,6 +8,6 @@ function mapStateToProps(state, ownProps) {
     }
 }
 
-const PostListContainer = connect(mapStateToProps)(PostListComponent)
+const PostListContainer = connect(mapStateToProps)(PostListComponent);
 
-export default PostListContainer
+export default PostListContainer;
