@@ -29,17 +29,18 @@ class PostComponent extends React.Component {
 
   loadPost(screenType) {
     const cardWidth = (screenType === "desktop")? "50%" : "100%";
+    const { post } = this.props;
 
-    if (this.props.post !== null && this.props.post !== undefined) {
+    if (post !== null && post !== undefined) {
       return (
-        <Card id={this.props.post.id} style={{width: cardWidth}} centered>
+        <Card id={post.id} style={{width: cardWidth}} centered>
           <Card.Content>
-            <Image src={this.props.post.creator.avatar.url} avatar />
-            <span style={{paddingLeft: '7px'}}>{this.props.post.creator.username}</span>
+            <Image src={post.creator.avatar.url} avatar />
+            <span style={{paddingLeft: '7px'}}>{post.creator.username}</span>
           </Card.Content>
           <div style={{position: 'relative'}}>
-            <Image src={this.props.post.image.url} />
-            {this.props.post.bubbles.map(
+            <Image src={post.image.url} />
+            {post.bubbles.map(
               (bubble) => <Bubble key={bubble.id} bubble={bubble} />
             )}
           </div>
@@ -50,7 +51,7 @@ class PostComponent extends React.Component {
                       onClick={this.changeLikeIcon}
                       style={{cursor: 'pointer'}}
                 />
-                <span>{this.props.post.likeCount}</span>
+                <span>{post.likeCount}</span>
               </Menu.Item>
               <Menu.Menu position="right">
                 <Menu.Item fitted>
@@ -61,12 +62,12 @@ class PostComponent extends React.Component {
               </Menu.Menu>
             </Menu>
             <Card.Description>
-              <Linkify>{this.props.post.caption}</Linkify>
+              <Linkify>{post.caption}</Linkify>
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
           <span className='date'>
-            {new Date(this.props.post.createdAt).toLocaleDateString()}
+            {new Date(post.createdAt).toLocaleDateString()}
           </span>
           </Card.Content>
         </Card>
@@ -75,6 +76,9 @@ class PostComponent extends React.Component {
   }
 
   changeLikeIcon() {
+    const { likePost, unlikePost } = this.props.actions;
+    const { id: postId } = this.props.post;
+
     this.setState(
       // Alter the likeIcon of the post UI
       (prevState) => ({
@@ -83,9 +87,9 @@ class PostComponent extends React.Component {
       // Callback to alter the corresponding likeCount number in the state
       () => {
         if (this.state.likeIcon === "heart") {
-          this.props.actions.likePost(this.props.post.id);
+          likePost(postId);
         } else {
-          this.props.actions.unlikePost(this.props.post.id);
+          unlikePost(postId);
         }
       }
     );

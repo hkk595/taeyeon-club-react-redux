@@ -13,8 +13,9 @@ class Bubble extends React.Component {
   }
 
   initAudio() {
-    let bubbleImage = $("#" + this.props.bubble.id);
-    this.audioObj = new Audio(this.props.bubble.audio.url);
+    const { bubble } = this.props;
+    let bubbleImage = $("#" + bubble.id);
+    this.audioObj = new Audio(bubble.audio.url);
     this.audioObj.onplay = () => bubbleImage.attr("src", this.getBubbleImgUrl());
     this.audioObj.onpause = () => bubbleImage.attr("src", this.getBubbleImgUrl());
     this.audioObj.onended = () => bubbleImage.attr("src", this.getBubbleImgUrl());
@@ -32,6 +33,7 @@ class Bubble extends React.Component {
   }
 
   getBubbleImgUrl() {
+    const { bubble } = this.props;
     let imgUrl;
     let audioPlaying = false;
 
@@ -39,37 +41,37 @@ class Bubble extends React.Component {
       audioPlaying = !this.audioObj.paused;
     }
 
-    if (audioPlaying && this.props.bubble.orientation === "N") {
+    if (audioPlaying && bubble.orientation === "N") {
       imgUrl = "/image/bubble_pause_n.png";
-    } else if (audioPlaying && this.props.bubble.orientation === "S") {
+    } else if (audioPlaying && bubble.orientation === "S") {
       imgUrl = "/image/bubble_pause_s.png";
-    } else if (audioPlaying && this.props.bubble.orientation === "E") {
+    } else if (audioPlaying && bubble.orientation === "E") {
       imgUrl = "/image/bubble_pause_e.png";
-    } else if (audioPlaying && this.props.bubble.orientation === "W") {
+    } else if (audioPlaying && bubble.orientation === "W") {
       imgUrl = "/image/bubble_pause_w.png";
-    } else if (audioPlaying && this.props.bubble.orientation === "NE") {
+    } else if (audioPlaying && bubble.orientation === "NE") {
       imgUrl = "/image/bubble_pause_ne.png";
-    } else if (audioPlaying && this.props.bubble.orientation === "NW") {
+    } else if (audioPlaying && bubble.orientation === "NW") {
       imgUrl = "/image/bubble_pause_nw.png";
-    } else if (audioPlaying && this.props.bubble.orientation === "SE") {
+    } else if (audioPlaying && bubble.orientation === "SE") {
       imgUrl = "/image/bubble_pause_se.png";
-    } else if (audioPlaying && this.props.bubble.orientation === "SW") {
+    } else if (audioPlaying && bubble.orientation === "SW") {
       imgUrl = "/image/bubble_pause_sw.png";
-    } else if (!audioPlaying && this.props.bubble.orientation === "N") {
+    } else if (!audioPlaying && bubble.orientation === "N") {
       imgUrl = "/image/bubble_play_n.png";
-    } else if (!audioPlaying && this.props.bubble.orientation === "S") {
+    } else if (!audioPlaying && bubble.orientation === "S") {
       imgUrl = "/image/bubble_play_s.png";
-    } else if (!audioPlaying && this.props.bubble.orientation === "E") {
+    } else if (!audioPlaying && bubble.orientation === "E") {
       imgUrl = "/image/bubble_play_e.png";
-    } else if (!audioPlaying && this.props.bubble.orientation === "W") {
+    } else if (!audioPlaying && bubble.orientation === "W") {
       imgUrl = "/image/bubble_play_w.png";
-    } else if (!audioPlaying && this.props.bubble.orientation === "NE") {
+    } else if (!audioPlaying && bubble.orientation === "NE") {
       imgUrl = "/image/bubble_play_ne.png";
-    } else if (!audioPlaying && this.props.bubble.orientation === "NW") {
+    } else if (!audioPlaying && bubble.orientation === "NW") {
       imgUrl = "/image/bubble_play_nw.png";
-    } else if (!audioPlaying && this.props.bubble.orientation === "SE") {
+    } else if (!audioPlaying && bubble.orientation === "SE") {
       imgUrl = "/image/bubble_play_se.png";
-    } else if (!audioPlaying && this.props.bubble.orientation === "SW") {
+    } else if (!audioPlaying && bubble.orientation === "SW") {
       imgUrl = "/image/bubble_play_sw.png";
     }
 
@@ -77,12 +79,13 @@ class Bubble extends React.Component {
   }
 
   render() {
+    const { bubble } = this.props;
     const imgUrl = this.getBubbleImgUrl();
-    const x = this.props.bubble.positionX * 100 + '%';
-    const y = this.props.bubble.positionY * 100 + '%';
+    const x = bubble.positionX * 100 + '%';
+    const y = bubble.positionY * 100 + '%';
 
     return (
-      <Image id={this.props.bubble.id}
+      <Image id={bubble.id}
              src={imgUrl}
              onClick={this.playAudio}
              width="13%" height="auto"
