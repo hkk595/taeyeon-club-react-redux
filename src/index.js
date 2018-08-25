@@ -12,10 +12,10 @@ let store = configureStore();
 
 // All the components strictly follow the container-component pattern of react-redux
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
 
 registerServiceWorker();
